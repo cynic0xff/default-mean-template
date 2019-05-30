@@ -25,17 +25,19 @@ export class NameAddComponent implements OnInit {
     });
   }
 
-  onSubmit(form:NgForm) {
+  onFormSubmit(form:NgForm) {
     this.isLoading = true;
     this.api.addName(form)
     .subscribe(res => {
       let id = res['_id'];
+      console.log(`The ID ${id}`);
       this.isLoading = false;
-      this.router.navigate(['/name-detail', id])
+      //this.router.navigate(['/name-detail', id])
+      this.router.navigate(['/names']);
     }, (err) => {
       console.log(err);
       this.isLoading = false;
-    })
+    });
   }
 
 }
