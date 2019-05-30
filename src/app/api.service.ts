@@ -33,6 +33,13 @@ export class ApiService {
     );
   }
 
+  addName(name): Observable<Name> {
+    return this.http.post<Name>(apiUrl, name, httpOptions).pipe(
+      tap((name: Name) => console.log(`add name with id ${name._id}`)),
+      catchError(this.handleError<any>('add name'))
+    )
+  }
+
   //error handler
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
