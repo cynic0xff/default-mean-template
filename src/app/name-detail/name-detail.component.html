@@ -1,3 +1,25 @@
-<p>
-  name-detail works!
-</p>
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/names']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title><h2>{{name.name}}</h2></mat-card-title>
+      <mat-card-subtitle>{{name.address.street}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <dl>
+        <dt>Address:</dt>
+        <dd>{{name.address.street}}, {{name.address.city}}</dd>
+      </dl>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-flat-button color="primary" [routerLink]="['/name-edit', name._id]"><mat-icon>edit</mat-icon></a>
+      <a mat-flat-button color="warn" (click)="deleteProduct(name._id)"><mat-icon>delete</mat-icon></a>
+    </mat-card-actions>
+  </mat-card>
+</div>
